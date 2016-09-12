@@ -1,4 +1,4 @@
-var helper = require('./helper.js');
+var helper = require('../../helper.js');
 var faker = require('faker');
 
 describe('Main page: login/register', function() {
