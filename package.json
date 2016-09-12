@@ -1,0 +1,22 @@
+{
+  "name": "e2e-protractor-udemy",
+  "version": "1.0.0",
+  "description": "End-to-end testing with Protractor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenkoA/e2e-protractor-udemy.git"
+  },
+  "author": "Adrian Benko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenkoA/e2e-protractor-udemy/issues"
+  },
+  "homepage": "https://github.com/BenkoA/e2e-protractor-udemy#readme",
+  "dependencies": {
+    "protractor": "^4.0.5"
+  }
+}
