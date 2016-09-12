@@ -1,18 +1,29 @@
 var helper = require('./helper.js');
+var faker = require('faker');
 
 describe('Main page: login/register', function() {
 
-    xit('should have a title', function(){
+    beforeEach(function() {
         browser.get(browser.params.url);
+    });
 
+    afterEach(function(){
+       browser.manage().deleteAllCookies();
+    });
+
+    var randomFirstName = faker.name.firstName();
+    var randomLastName = faker.name.lastName();
+    var randomEmail = faker.internet.email();
+    var randomPassword = faker.internet.password();
+    var randomUsername = faker.internet.userName();
+
+    it('should have a title', function(){
         var title = 'Etsy :: Your place to buy and sell all things handmade';
 
         expect(browser.getTitle()).toEqual(title);
    });
 
-    xit('should sign in and verify that password error appears', function(){
-        browser.get(browser.params.url);
-
+    it('should sign in and verify that password error appears', function(){
         var signInButton = element(by.id('sign-in'));
         var usernameField = element(by.id('username-existing'));
         var userPasswordField = element(by.id('password-existing'));
@@ -33,8 +44,6 @@ describe('Main page: login/register', function() {
     });
 
     it('should register a new user', function(){
-        browser.get(browser.params.url);
-
         var registerButtonOnMainPage = element(by.id('register'));
 
         var firstNameField = element(by.id('first-name'));
@@ -49,12 +58,12 @@ describe('Main page: login/register', function() {
         registerButtonOnMainPage.click();
         helper.waitUntilReady(firstNameField);
 
-        firstNameField.sendKeys('QA firstname');
-        lastNameField.sendKeys('QA lastname');
-        emailField.sendKeys('qaEmail@dispostable.com');
-        passwordField.sendKeys('password01');
-        confirmPasswordField.sendKeys('password01');
-        usernameField.sendKeys('qausername');
+        firstNameField.sendKeys(randomFirstName);
+        lastNameField.sendKeys(randomLastName);
+        emailField.sendKeys(randomEmail);
+        passwordField.sendKeys(randomPassword);
+        confirmPasswordField.sendKeys(randomPassword);
+        usernameField.sendKeys(randomUsername);
         etsyFinds.click();
 
     });
