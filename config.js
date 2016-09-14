@@ -7,7 +7,7 @@ exports.config = {
     },
     suites: {
         cart: 'pages/cart/*.spec.js',
-        login: 'pages/login/*.spec.js',
+        home: 'pages/home/*.spec.js',
         search: 'pages/search/*.spec.js'
     },
 

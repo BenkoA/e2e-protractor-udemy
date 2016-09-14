@@ -17,6 +17,6 @@ describe('Main page: cart', function(){
 
     it('should navigate to the cart page', function(){
         commonElements.cartIcon.click();
-        expect(cartPage.errorMessageEmptyCart.getText()).toBe('Your cart is empty.');
+        expect(cartPage.errorMessageEmptyCart.getText()).toBe(cartPage.emptyCartNotificationText);
     });
 });
