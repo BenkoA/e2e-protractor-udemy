@@ -1,5 +1,4 @@
 var helper = require('../../helper.js');
-var faker = require('faker');
 var HomePage = require('./home.po.js');
 
 describe('Main page: login/register', function() {
@@ -13,12 +12,6 @@ describe('Main page: login/register', function() {
     afterEach(function(){
        browser.manage().deleteAllCookies();
     });
-
-    var randomFirstName = faker.name.firstName();
-    var randomLastName = faker.name.lastName();
-    var randomEmail = faker.internet.email();
-    var randomPassword = faker.internet.password();
-    var randomUsername = faker.internet.userName();
 
     it('should have a title', function(){
 
@@ -58,15 +51,7 @@ describe('Main page: login/register', function() {
 
     it('should register a new user', function(){
         homePage.goToRegister();
-
-        homePage.firstNameField.sendKeys(randomFirstName);
-        homePage.lastNameField.sendKeys(randomLastName);
-        homePage.emailField.sendKeys(randomEmail);
-        homePage.passwordField.sendKeys(randomPassword);
-        homePage.confirmPasswordField.sendKeys(randomPassword);
-        homePage.usernameField.sendKeys(randomUsername);
-        homePage.etsyFinds.click();
-
+        homePage.doRegister();
     });
 
 });
