@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/BenkoA/e2e-protractor-udemy#readme",
   "dependencies": {
+    "dotenv": "^2.0.0",
     "protractor": "^4.0.5"
   },
   "devDependencies": {

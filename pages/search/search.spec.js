@@ -1,5 +1,9 @@
 var helper = require('../../helper');
+SearchPage = require('./search.po.js');
+
 describe('Main page: Search functionality', function(){
+
+    var searchPage = new SearchPage();
 
     beforeEach(function() {
         browser.get(browser.params.url);
@@ -11,16 +15,46 @@ describe('Main page: Search functionality', function(){
     });
 
 
-    it('should test the Search functionality', function(){
-        var searchBar = element(by.id('search-query'));
-        var searchButton = element(by.xpath("//button[contains(text(),'Search')]"));
-        var searchItem = element(by.xpath("//*[@id=\"content\"]/div/div/div[2]/div/div[3]/div[2]/div[3]/a/div/div[1]"));
+    it('should search for the iPhone 6 case', function(done){
 
-        searchBar.sendKeys('vinyl');
-        helper.waitUntilReady(searchButton);
-        searchButton.click();
-
-        helper.waitUntilReady(searchItem);
-        searchItem.click();
+        searchPage.searchField.sendKeys('Wolf Fox Feathers Black Mandala Henna Phone Case iPhone 6')
+            .then(function () {
+                return helper.waitUntilReady(searchPage.searchButton);
+            })
+            .then(function(){
+                return searchPage.searchButton.click();
+            })
+            .then(function(){
+                return helper.waitUntilReady(searchPage.searchItem);
+            })
+            .then(function(){
+                return searchPage.searchItem.click();
+            })
+            .then(done);
     });
+
+    it('should search for the iPhone 6 case and check for the "device error" message', function(done){
+
+        searchPage.searchField.sendKeys('Wolf Fox Feathers Black Mandala Henna Phone Case iPhone 6')
+            .then(function () {
+                return helper.waitUntilReady(searchPage.searchButton);
+            })
+            .then(function(){
+                return searchPage.searchButton.click();
+            })
+            .then(function(){
+                return helper.waitUntilReady(searchPage.searchItem);
+            })
+            .then(function(){
+                return searchPage.searchItem.click();
+            })
+            .then(function(){
+                return searchPage.addToCartButton.click();
+            })
+            .then(function() {
+                return expect(searchPage.selectDeviceErrorText.getText()).toBe('Please select a device');
+            })
+            .then(done);
+    });
+
 });
